@@ -1,0 +1,7 @@
+Age;Amis;Nom
+33;1000;Therese
+33;12;Renee
+12;100;Youssef
+56;20;George
+12;3;Ludovic
+33;150;Paola

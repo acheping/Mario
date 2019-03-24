@@ -1,8 +1,10 @@
 package Movies
+import org.apache.log4j.{Level, Logger}
+import org.apache.spark.{SparkConf, SparkContext}
 
 object MoviesRelevance {
-    def main(args: Array[String]): Unit = {
-      Logger.getLogg("org").setLevel(Level.OFF)
+    def mains(args: Array[String]): Unit = {
+      Logger.getLogger("org").setLevel(Level.OFF)
 
       val conf = new SparkConf().setAppName("Test").setMaster("local[2]")
       val sc = new SparkContext(conf)
