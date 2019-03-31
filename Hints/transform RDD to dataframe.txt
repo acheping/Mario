@@ -1,0 +1,23 @@
+    val ss = SparkSession.builder().master("local[*]").getOrCreate
+
+
+    val rdd2: RDD[String] = ss.sparkContext.textFile("file.csv")
+
+    val stringToList: RDD[List[String]] = rdd2.map(l => l.split(";").to[List])
+    val listToRow =  stringToList.map(row)
+
+    val structure3 =
+      StructType( Seq(
+        StructField("name", StringType, nullable = true),
+        StructField("age", IntegerType, nullable = true)
+      ))
+
+    val dataframeCreated = ss.createDataFrame(listToRow, structure3)
+    dataframeCreated.show()
+    dataframeCreated.printSchema()
+
+
+def row(line: List[String]): Row = {
+    val rowObject = Row(line(0), line(1).toInt)
+    rowObject
+  }
